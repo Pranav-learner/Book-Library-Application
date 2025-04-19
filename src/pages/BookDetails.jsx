@@ -1,11 +1,9 @@
-// src/pages/AllBooks.jsx
 import React from "react";
 
 function BookDetails() {
   return (
     <div className="p-4">
-      <h1>Name of the Book</h1>
-      <p>Details</p>
+      <h1>Details of books</h1>
     </div>
   );
 }
