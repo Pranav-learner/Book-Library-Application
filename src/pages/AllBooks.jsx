@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import BookCard from "../components/BookCard.jsx";
+import { useWishlist } from "../context/WishlistContext.jsx"; // Adjust the import path
 
 function AllBooks() {
   const [books, setBooks] = useState([]);
@@ -54,7 +55,7 @@ function AllBooks() {
       <h1 className="text-2xl font-semibold mb-4 text-gray-800">All Books</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {books.map((book) => (
-          <BookCard key={book.id} book={book.volumeInfo} />
+          <BookCard key={book.id} book={book.volumeInfo} bookId={book.id} />
         ))}
       </div>
       <div className="flex justify-around mt-4">

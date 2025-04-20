@@ -7,22 +7,25 @@ import Wishlist from "./pages/Wishlist";
 import Search from "./pages/Search";
 import Activites from "./pages/Activites";
 import { lazy, suspense } from "react";
+import { useWishlist, WishlistProvider } from "./context/WishlistContext";
 
 function App() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <Router>
-        <Navbar />
-        <div className="container mx-auto mt-8">
-          <Routes>
-            <Route path="/" element={<AllBooks />} />
-            <Route path="/activities" element={<Activites />} />
-            <Route path="/books/:id" element={<BookDetails />} />
-            <Route path="/wishlist" element={<Wishlist />} />
-            <Route path="/search" element={<Search />} />
-          </Routes>
-        </div>
-      </Router>
+      <WishlistProvider>
+        <Router>
+          <Navbar />
+          <div className="container mx-auto mt-8">
+            <Routes>
+              <Route path="/" element={<AllBooks />} />
+              <Route path="/activities" element={<Activites />} />
+              <Route path="/books/:id" element={<BookDetails />} />
+              <Route path="/wishlist" element={<Wishlist />} />
+              <Route path="/search" element={<Search />} />
+            </Routes>
+          </div>
+        </Router>
+      </WishlistProvider>
     </Suspense>
   );
 }
