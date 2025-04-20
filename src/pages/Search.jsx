@@ -1,24 +1,40 @@
-import React, { useState } from "react";
-import BookCard from "../components/BookCard"; // Adjust the import path
+import React, { useState, useEffect } from "react";
+import BookCard from "../components/BookCard";
 
 function SearchPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [filter, setFilter] = useState("all");
+  const [sortBy, setSortBy] = useState("relevance"); // Default sorting
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
+  const handleFilterChange = (event) => {
+    setFilter(event.target.value);
+  };
+
+  const handleSortChange = (event) => {
+    setSortBy(event.target.value);
+  };
+
   const handleSearch = async () => {
     setLoading(true);
     setError(null);
-    setSearchResults([]); // Clear previous results
+    setSearchResults([]);
 
     try {
       const response = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=20` // Adjust maxResults as needed
+        `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=20&printType=${
+          filter === "books"
+            ? "books"
+            : filter === "magazines"
+            ? "magazines"
+            : "all"
+        }&orderBy=${sortBy}`
       );
       const data = await response.json();
 
@@ -34,12 +50,19 @@ function SearchPage() {
     }
   };
 
+  // Re-fetch results when the filter or sort changes (if a search term is present)
+  useEffect(() => {
+    if (searchTerm.trim()) {
+      handleSearch();
+    }
+  }, [filter, sortBy]);
+
   return (
     <div className="p-4">
       <h1 className="text-2xl font-semibold mb-4 text-gray-800">
         Search Books
       </h1>
-      <div className="flex mb-4">
+      <div className="flex items-center mb-4">
         <input
           type="text"
           placeholder="Enter book title or author"
@@ -54,6 +77,15 @@ function SearchPage() {
         >
           Search
         </button>
+        <select
+          className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ml-4"
+          value={filter}
+          onChange={handleFilterChange}
+        >
+          <option value="all">All Print Types</option>
+          <option value="books">Books Only</option>
+          <option value="magazines">Magazines Only</option>
+        </select>
       </div>
 
       {loading && <p>Searching for books...</p>}

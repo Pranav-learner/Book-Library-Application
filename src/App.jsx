@@ -18,7 +18,7 @@ function App() {
           <div className="container mx-auto mt-8">
             <Routes>
               <Route path="/" element={<AllBooks />} />
-              <Route path="/activities" element={<Activites />} />
+              <Route path="/activites" element={<Activites />} />
               <Route path="/books/:id" element={<BookDetails />} />
               <Route path="/wishlist" element={<Wishlist />} />
               <Route path="/search" element={<Search />} />
