@@ -58,7 +58,7 @@ function SearchPage() {
   }, [filter, sortBy]);
 
   return (
-    <div className="p-4">
+    <div className="p-4 bg-amber-300">
       <h1 className="text-2xl font-semibold mb-4 text-gray-800">
         Search Books
       </h1>
@@ -66,7 +66,7 @@ function SearchPage() {
         <input
           type="text"
           placeholder="Enter book title or author"
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-3 bg-amber-50 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           value={searchTerm}
           onChange={handleInputChange}
         />
@@ -78,7 +78,7 @@ function SearchPage() {
           Search
         </button>
         <select
-          className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ml-4"
+          className="shadow appearance-none border rounded py-2 px-3 bg-blue-500 hover:bg-blue-700 text-white font-bold leading-tight focus:outline-none focus:shadow-outline ml-2"
           value={filter}
           onChange={handleFilterChange}
         >

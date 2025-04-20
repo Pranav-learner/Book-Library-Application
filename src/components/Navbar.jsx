@@ -43,12 +43,6 @@ function Navbar() {
         {/* Desktop Navigation Links (Visible on larger screens) */}
         <div className="hidden md:flex space-x-4">
           <Link
-            to="/activites"
-            className="text-indigo-100 hover:text-white hover:bg-indigo-700 px-3 py-1 rounded-md transition-colors"
-          >
-            Your Activity
-          </Link>
-          <Link
             to="/wishlist"
             className="text-indigo-100 hover:text-white hover:bg-indigo-700 px-3 py-1 rounded-md transition-colors"
           >
