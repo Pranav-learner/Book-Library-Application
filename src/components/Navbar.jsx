@@ -67,12 +67,6 @@ function Navbar() {
             Search
           </Link>
           <Link
-            to="/activites"
-            className="block text-indigo-100 hover:text-white hover:bg-indigo-800 px-3 py-2 rounded-md"
-          >
-            Your Activity
-          </Link>
-          <Link
             to="/wishlist"
             className="block text-indigo-100 hover:text-white hover:bg-indigo-800 px-3 py-2 rounded-md"
           >
